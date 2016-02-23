@@ -104,7 +104,16 @@
 
     $.fn.componentSlider = function (options) {
         this.each(function (index, element) {
-            new ComponetSlider($(element), $.extend({}, options, ComponetSlider.defaultOptions));
+            var instance = this.data('component-slider-instance');
+            if (instance instanceof ComponetSlider) {
+                if (options == 'instance') {
+                    return instance;
+                } else if (typeof instance[options] === 'function') {
+                    return instance[options].apply(instance, Array.prototype.slice.call(arguments, 1));
+                }
+            } else {
+                this.data('component-slider-instance', new ComponetSlider($(element), $.extend({}, options, ComponetSlider.defaultOptions)));
+            }
         });
     };
 }));
