@@ -1,21 +1,22 @@
 {
-  "name": "content-slider",
-  "homepage": "https://github.com/enjoythelive1/content-slider",
-  "authors": [
+    "name": "content-slider",
+    "version": "0.0.1",
+    "homepage": "https://github.com/enjoythelive1/content-slider",
+    "authors": [
     "arturo <enjoythelive@gmail.com>"
   ],
-  "description": "This is a tool to make content slides",
-  "main": "",
-  "moduleType": [
+    "description": "This is a tool to make content slides",
+    "main": "",
+    "moduleType": [
     "amd",
     "globals",
     "node"
   ],
-  "keywords": [
+    "keywords": [
     "slide"
   ],
-  "license": "MIT",
-  "ignore": [
+    "license": "MIT",
+    "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
