@@ -24,14 +24,14 @@
         factory(jQuery);
     }
 }(function ($, undefined) {
-    function ComponetSlider(element, options) {
+    function ContentSlider(element, options) {
         this.element = element;
         this.options = options;
         this.current = 0;
         this.element.on('click touchstart', '.controls .next, .controls .previous, [data-slider-goto], [data-slider-previous], [data-slider-next]', this.onControlClick.bind(this));
     }
 
-    ComponetSlider.prototype = {
+    ContentSlider.prototype = {
         isHorizontal: function isHorizontal() {
             if (typeof this.options.horizontal === 'boolean') {
                 return this.options.horizontal;
@@ -97,14 +97,23 @@
         }
     };
 
-    ComponetSlider.defaultOptions = {
+    ContentSlider.defaultOptions = {
         scrollTime: 500,
         scrollAnimation: undefined
     };
 
-    $.fn.componentSlider = function (options) {
+    $.fn.contentSlider = function (options) {
         this.each(function (index, element) {
-            new ComponetSlider($(element), $.extend({}, options, ComponetSlider.defaultOptions));
+            var instance = this.data('content-slider-instance');
+            if (instance instanceof ContentSlider) {
+                if (options == 'instance') {
+                    return instance;
+                } else if (typeof instance[options] === 'function') {
+                    return instance[options].apply(instance, Array.prototype.slice.call(arguments, 1));
+                }
+            } else {
+                this.data('content-slider-instance', new ContentSlider($(element), $.extend({}, options, ContentSlider.defaultOptions)));
+            }
         });
     };
 }));
