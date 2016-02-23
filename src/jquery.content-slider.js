@@ -115,5 +115,6 @@
                 $(element).data('content-slider-instance', new ContentSlider($(element), $.extend({}, options, ContentSlider.defaultOptions)));
             });
         }
+        return this;
     };
 }));
