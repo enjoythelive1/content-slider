@@ -103,17 +103,17 @@
     };
 
     $.fn.contentSlider = function (options) {
-        this.each(function (index, element) {
-            var instance = this.data('content-slider-instance');
-            if (instance instanceof ContentSlider) {
-                if (options == 'instance') {
-                    return instance;
-                } else if (typeof instance[options] === 'function') {
-                    return instance[options].apply(instance, Array.prototype.slice.call(arguments, 1));
-                }
-            } else {
-                this.data('content-slider-instance', new ContentSlider($(element), $.extend({}, options, ContentSlider.defaultOptions)));
+        var instance = this.data('content-slider-instance');
+        if (instance instanceof ContentSlider) {
+            if (options == 'instance') {
+                return instance;
+            } else if (typeof instance[options] === 'function') {
+                return instance[options].apply(instance, Array.prototype.slice.call(arguments, 1));
             }
-        });
+        } else {
+            this.each(function (index, element) {
+                $(element).data('content-slider-instance', new ContentSlider($(element), $.extend({}, options, ContentSlider.defaultOptions)));
+            });
+        }
     };
 }));
