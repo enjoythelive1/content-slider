@@ -64,6 +64,10 @@
             }
         },
 
+        goToCurrent: function goToCurrent(){
+            this.goTo(this.current);
+        },
+
         goTo: function goTo(position) {
             if (isNaN(parseInt(position, 10))) {
                 position = this.getSlidePosition(position);
